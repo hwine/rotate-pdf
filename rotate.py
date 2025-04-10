@@ -26,7 +26,9 @@ def _(mo):
 def _(doit_button, mo, parse_args, rotate_pdf):
 
     # Define input and output file paths
-    mo.stop(not doit_button.value)
+    if mo.running_in_notebook():
+        # wait for user to click button
+        mo.stop(not doit_button.value)
     file_no = 0
     input_pdf, rotation_angle = parse_args()
     if input_pdf:
