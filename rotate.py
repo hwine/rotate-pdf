@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.12.0"
+__generated_with = "0.11.9"
 app = marimo.App(width="medium")
 
 
@@ -23,8 +23,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(doit_button, mo, parse_args, rotate_pdf):
-
+def _(Path, doit_button, mo, parse_args, rotate_pdf):
     # Define input and output file paths
     if mo.running_in_notebook():
         # wait for user to click button
@@ -32,6 +31,7 @@ def _(doit_button, mo, parse_args, rotate_pdf):
     file_no = 0
     input_pdf, rotation_angle = parse_args()
     if input_pdf:
+        input_pdf = Path(input_pdf)
         file_no += 1
         output_pdf = input_pdf.parent.joinpath(f"{input_pdf.stem}-rot_{rotation_angle}.pdf")
     
